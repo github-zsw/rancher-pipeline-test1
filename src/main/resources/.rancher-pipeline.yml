@@ -1,0 +1,20 @@
+stages:
+  - name: compile
+    steps:
+      - runScriptConfig:
+          image: maven:v1
+          shellScript: mvn clean package
+  - name: publish
+    steps:
+      - publishImageConfig:
+          dockerfilePath: ./Dockerfile
+          buildContext: .
+          tag: rancher-pipeline-test1:v1.0.0
+          pushRemote: true
+          registry: index.docker.io
+  - name: deploy
+    steps:
+      - applyYamlConfig:
+          path: ./deployment.yaml
+timeout: 60
+notification: {}

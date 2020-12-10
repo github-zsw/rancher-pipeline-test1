@@ -8,9 +8,10 @@ import org.springframework.web.bind.annotation.RestController;
  * @date ：Created in 2020-12-10 10:40
  * @description ：
  */
-@RestController("test")
+@RestController
+@RequestMapping("/test")
 public class TestController {
-    @RequestMapping("hello")
+    @RequestMapping("/hello")
     public String hello() {
         return "hello World";
     }
